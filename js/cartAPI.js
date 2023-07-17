@@ -1,63 +1,68 @@
-
 var user = decodeJWTToken(localStorage.getItem('token'));
 document.addEventListener("DOMContentLoaded", function () {
-const cart = document.getElementsByClassName('cartuser');
-    ShowAllCart();
-    function ShowAllCart() {
+    // ShowAllCart();
+    const cartUserLink = document.getElementById('cartuser');
+    cartUserLink.addEventListener('click', ShowAllCart);
+    async function ShowAllCart() {
         if (!isAuthenticated()) {
             window.location.href = "/login.html";
         } else {
             cart.setAttribute('href', 'cart.html');
             let total = 0;
 
-            fetch('https://localhost:7180/api/cart/cartUser?id=' + user.userId)
-                .then(response => response.json())
-                .then(data => {
-                    const Element = document.getElementById('apiTablec');
-                    const row = data.map(data =>
-                        `
+            try {
+                const response = await fetch('https://localhost:7180/api/cart/cartUser?id=' + user.userId);
+                const data = await response.json();
+
+                const Element = document.getElementById('apiTablec');
+                const row = data.map(data =>
+                    `
                 <tr>
-                    <td style="width: 100px;">
-                        <h5 class="product-titles" style="text-align: center;">${data.cartId} 
-                        </h5>
-                    </td>
-                    <td style="width: 200px">
-                        <img src="image/${data.products.pImg}" alt="" style="width: 50px; height: 50px; border-radius: 50%;" />
-                    </td>
-                    <td style="width: 100px;">
-                        <h5 class="product-titles" style="text-align: center;">${data.products.productName}</h5>
-                    </td>
-                    <td style="width: 100px;">
-                        <h5 class="product-titles" style="text-align: center;">$${data.products.price}</h5>
-                    </td>
-                    <td style="width: 100px;">
-                        <h5 class="product-titles" style="text-align: center;">${data.quantity}</h5>
-                    </td> 
-                    <td style="width: 100px;">
-                        <h5 class="product-titles" style="text-align: center;">$${data.quantity * data.products.price}</h5>
-                    </td>
-                    <td style="width: 100px;">
-                        <button class="delete" onclick="handleClick(${data.cartId})">Delete</button>
-                    </td>
+                  <td style="width: 100px;">
+                    <h5 class="product-titles" style="text-align: center;">${data.cartId} 
+                    </h5>
+                  </td>
+                  <td style="width: 200px">
+                    <img src="image/${data.products.pImg}" alt="" style="width: 50px; height: 50px; border-radius: 50%;" />
+                  </td>
+                  <td style="width: 100px;">
+                    <h5 class="product-titles" style="text-align: center;">${data.products.productName}</h5>
+                  </td>
+                  <td style="width: 100px;">
+                    <h5 class="product-titles" style="text-align: center;">$${data.products.price}</h5>
+                  </td>
+                  <td style="width: 100px;">
+                    <h5 class="product-titles" style="text-align: center;">${data.quantity}</h5>
+                  </td> 
+                  <td style="width: 100px;">
+                    <h5 class="product-titles" style="text-align: center;">$${data.quantity * data.products.price}</h5>
+                  </td>
+                  <td style="width: 100px;">
+                    <button class="delete" onclick="handleClick(${data.cartId})">Delete</button>
+                  </td>
                 </tr>
-                `)
-                    Element.innerHTML = row.join('');
-                    data.forEach(data => {
-                        const subTotal = data.quantity * data.products.price;
-                        total += subTotal;
-                    });
-                    const totalPriceElement = document.querySelector('.totalprice h2 span');
-                    totalPriceElement.textContent = '$' + total;
-                    const checkoutButton = document.querySelector('.totalprice button');
-                    checkoutButton.addEventListener('click', () => {
-                        alert('Total Price: $' + total);
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
+                `);
+
+                Element.innerHTML = row.join('');
+
+                data.forEach(data => {
+                    const subTotal = data.quantity * data.products.price;
+                    total += subTotal;
                 });
+
+                const totalPriceElement = document.querySelector('.totalprice h2 span');
+                totalPriceElement.textContent = '$' + total;
+
+                const checkoutButton = document.querySelector('.totalprice button');
+                checkoutButton.addEventListener('click', () => {
+                    alert('Total Price: $' + total);
+                });
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
+
     var createBtn = document.querySelector("#pay");
     createBtn.onclick = function () {
         fetch('https://localhost:7180/api/cart/cartUser?id=' + user.userId)
