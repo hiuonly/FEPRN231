@@ -1,16 +1,21 @@
 
 var user = decodeJWTToken(localStorage.getItem('token'));
 document.addEventListener("DOMContentLoaded", function () {
+const cart = document.getElementsByClassName('cartuser');
     ShowAllCart();
     function ShowAllCart() {
-        let total = 0;
+        if (!isAuthenticated()) {
+            window.location.href = "/login.html";
+        } else {
+            cart.setAttribute('href', 'cart.html');
+            let total = 0;
 
-        fetch('https://localhost:7180/api/cart/cartUser?id=' + user.userId)
-            .then(response => response.json())
-            .then(data => {
-                const Element = document.getElementById('apiTablec');
-                const row = data.map(data =>
-                    `
+            fetch('https://localhost:7180/api/cart/cartUser?id=' + user.userId)
+                .then(response => response.json())
+                .then(data => {
+                    const Element = document.getElementById('apiTablec');
+                    const row = data.map(data =>
+                        `
                 <tr>
                     <td style="width: 100px;">
                         <h5 class="product-titles" style="text-align: center;">${data.cartId} 
@@ -36,21 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     </td>
                 </tr>
                 `)
-                Element.innerHTML = row.join('');
-                data.forEach(data => {
-                    const subTotal = data.quantity * data.products.price;
-                    total += subTotal;
+                    Element.innerHTML = row.join('');
+                    data.forEach(data => {
+                        const subTotal = data.quantity * data.products.price;
+                        total += subTotal;
+                    });
+                    const totalPriceElement = document.querySelector('.totalprice h2 span');
+                    totalPriceElement.textContent = '$' + total;
+                    const checkoutButton = document.querySelector('.totalprice button');
+                    checkoutButton.addEventListener('click', () => {
+                        alert('Total Price: $' + total);
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-                const totalPriceElement = document.querySelector('.totalprice h2 span');
-                totalPriceElement.textContent = '$' + total;
-                const checkoutButton = document.querySelector('.totalprice button');
-                checkoutButton.addEventListener('click', () => {
-                    alert('Total Price: $' + total);
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        }
     }
     var createBtn = document.querySelector("#pay");
     createBtn.onclick = function () {
@@ -128,12 +134,22 @@ function decodeJWTToken(token) {
     return decodedToken;
 }
 
+function isAuthenticated() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 const getUser = decodeJWTToken(localStorage.getItem('token'));
 
-if (!getUser) {
-    window.location.href = "/login.html";
-} else {
-    function handleCreateForm() {
+function handleCreateForm() {
+    if (!isAuthenticated()) {
+        window.location.href = "/login.html";
+    } else {
+
         var createBtn = document.querySelector("#create");
         createBtn.onclick = function () {
             var productid = document.querySelector("#product-id").value;
@@ -256,9 +272,9 @@ function checkpay(id) {
                     "Content-type": "application/json; charset=UTF-8",
                 },
             })
-            .then(function (response) {
-                ShowMyOrder();
-              })
+                .then(function (response) {
+                    ShowMyOrder();
+                })
         })
         .catch(err => {
             console.log(err);
