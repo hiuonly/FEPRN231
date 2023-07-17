@@ -1,0 +1,684 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-03-2022, 13:01:04
+    Author     : MSII
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Odibee Sans', cursive;
+}
+section
+{
+    background: #111;
+    min-height: 100vh;
+}
+section .bannerVideo
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+section .bannerVideo video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+section .bannerVideo video.active
+{
+    opacity: 1;
+}
+.container1::before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 0 15px rgba(0,0,0,0.05);
+}
+.container1
+{
+    position: relative;
+    padding: 0 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+}
+.container1 header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+}
+.container1 header .logo
+{
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 2rem;
+    text-decoration: none;
+}
+.container1 header ul
+{
+    position: relative;
+    display: flex;
+}
+.container1 header.sticky
+{
+    padding: 5px 100px;
+    background: #fff;
+    z-index: 10000;
+}
+.container1 header.sticky ul li a.active
+{
+    background: #000;
+    color: #fff;
+}
+.container1 header.sticky .logo,
+.container1 header.sticky ul li a
+{
+    color: #000;
+}
+.container1 header.active ul
+{
+    display: flex;
+}
+.container1 header ul li
+{
+    list-style: none;
+    margin: 0 20px;
+}
+.container1 header ul li a
+{
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 4px 10px;
+    color: #fff;
+}
+.container1 header ul li a:hover
+{
+    background: #fff;
+    color: #111;
+}
+.container1 header ul li a.active
+{
+    background: #fff;
+    color: #111;
+}
+.container1 .content
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.container1 .content .bannerText
+{
+    position: relative;
+    max-width: 700px;
+}
+.container1 .content .bannerText div
+{
+    display: none;
+    transition: 0.5s ease-in-out;
+}
+.container1 .content .bannerText div.active
+{
+    display: initial;
+}
+.container1 .content .bannerText div h2
+{
+    color: #fff;
+    font-size: 6rem;
+    line-height: 1rem;
+    font-weight: 800;
+}
+.container1 .content .bannerText div p
+{
+    color: #fff;
+    margin: 50px 0px;
+    font-size: 18px;
+}
+.sci
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+.sci li
+{
+    list-style: none;
+}
+.sci li a
+{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+.sci li a img 
+{
+    display: inline-block;
+    max-height: 24px;
+}
+.sci li a:hover
+{
+    background: yellow;
+}
+.controls
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    background: #fff;
+}
+.controls li 
+{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+}
+.controls li:hover 
+{
+    background: #f5f5f5;
+}
+.controls li img
+{
+    max-width: 100%;
+}
+.menuIcon
+{
+    display: none;
+}
+
+/*--------------------*/
+.travel
+{
+    padding-bottom: 50px;
+}
+.travel .title
+{
+    padding-top: 50px;
+}
+.travel .title h2
+{
+    text-align: center;
+    font-weight: 700;
+    font-size: 5rem;
+}
+.travel .title h2 span
+{
+    color: #59815B;
+}
+.title-travel-1
+{
+    padding-top: 30px;
+    display: flex;
+}
+.title-travel-1-1 img
+{
+    max-width: 100%;
+}
+.title-travel-1-2 
+{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+.title-travel-1-2 h4
+{
+    text-align: center;
+}
+.title-travel-1-2 h1 
+{
+    font-weight: 700;
+    color: #000;
+    padding-left: 30px;
+}
+.title-travel-1-2 p {
+    padding-left: 30px;
+}
+.title-travel-1-2 h3 {
+    padding-top: 30px;
+    padding-left: 30px;
+    font-weight: 700;
+    color: #000;
+}
+.title-travel-1-2 h3:hover
+{
+    color: #59815B;
+}
+.title-travel-2 {
+    padding-top: 30px;
+    display: flex;
+}
+.title-travel-2-1
+{
+    position: relative;
+}
+
+.title-travel-2-1 img {
+    max-width: 100%;
+}
+
+.title-travel-2-2 {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.title-travel-2-2 h4 {
+    text-align: center;
+}
+
+.title-travel-2-2 h1 {
+    font-weight: 700;
+    color: #000;
+    padding-left: 30px;
+}
+
+.title-travel-2-2 p {
+    padding-left: 30px;
+}
+
+.title-travel-2-2 h3 {
+    padding-top: 30px;
+    padding-left: 30px;
+    font-weight: 700;
+    color: #000;
+}
+
+.title-travel-2-2 h3:hover {
+    color: #59815B;
+}
+/*---------------------------*/
+.email
+{
+    background-image: url('image/tải\ xuống\ \(1\).jpg');
+    background-size: cover;
+    padding-bottom: 50px;
+}
+.email .row 
+{
+    margin: 0;
+    padding: 0;
+}
+.email-img img
+{
+    max-width: 100%;
+}
+.email-title
+{
+    padding-left: 30px;
+    color: #000;
+}
+.email-title h3 
+{
+    padding-top: 80px;
+}
+.email-title h1 
+{
+    font-weight: 900;
+}
+.email-title h1 span 
+{
+    color: #59815B;
+}
+.email-title .email-from 
+{
+    display: flex;
+    padding-top: 30px;
+}
+.email-title .email-from input
+{
+    border: none;
+    padding: 10px 30px;
+    margin-right: 10px;
+}
+.email-title .email-from button 
+{
+    background: #59815b;
+    padding: 10px 40px;
+    border: none;
+}
+/*--------------------*/
+.post
+{
+    position: relative;
+}
+.post .row
+{
+    margin: 0;
+    padding: 0;
+}
+.post .post-title
+{
+    text-align: center;
+    font-weight: 900;
+    padding-top: 50px;
+}
+.post .post-title h1 span 
+{
+    color: #59815B;
+}
+.post img 
+{
+    max-width: 100%;
+}
+.post .post-card
+{
+    padding-top: 30px;
+}
+.post .post-card h1 
+{
+    font-weight: 900;
+    font-size: 3rem;
+}
+/*--------------------------*/
+.blogger
+{
+    position: relative;
+}
+.blogger .blogger-text
+{
+    padding-top: 200px;
+    
+}
+.blogger .blogger-text h1 
+{
+    font-weight: 900;
+    color: #000;
+    font-size: 6rem;
+}
+.blogger .blogger-text button 
+{
+    border: none;
+    background: #59815B;
+    padding: 10px 40px 10px 40px;
+    color: #fff;
+}
+.blogger .blogger-img img 
+{
+    max-width: 100%;
+    padding-top: 50px;
+}
+.google-map 
+{
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.map-responsive
+{
+     
+     height:100%;
+     width:100%;
+     
+}
+.icon
+{
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.icon img 
+{
+    max-width: 100%;
+}
+.icon .icon-img img
+{
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+.icon .icon-img h5 
+{
+    text-align: center;
+    font-weight: 900;
+    padding-top: 10px;
+}
+/*----*/
+/*-----*/
+.footer-text-1 h1 {
+    font-weight: 900;
+    font-size: 6rem;
+}
+
+.footer-text {
+    padding-top: 30px;
+}
+
+.footer-text-2 span {
+    color: #59815b;
+}
+
+footer {
+    background: #000;
+    color: #fff;
+    margin-top: 50px;
+}
+
+.footer-texts-1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.footer-texts-1 .footer-texts {
+    color: #fff;
+}
+
+.footer-texts-1 .footer-texts-2 {
+    padding-bottom: 30px;
+}
+
+.footer-texts-1 .footer-texts-2 h2 {
+    color: #fff;
+}
+
+.footer-texts-1 .footer-texts-2 span {
+    color: #59815b;
+}
+/*--------------------*/
+@media (max-width:991px)
+{
+    .container1
+    {
+        padding: 20px;
+    }
+    .container1::before
+    {
+        width: 100%;
+    }
+    .container1 header
+    {
+        padding: 10px 20px;
+    }
+    .container1 .content .bannerText div h2
+    {
+        font-size: 3rem;
+    }
+    .container1 .content .bannerText
+    {
+        text-align: center;
+    }
+    .container1 header ul
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .container1 header ul li
+    {
+        text-align: center;
+        margin: 10px;
+    }
+    .container1 header ul li a
+    {
+        color: #333;
+        font-size: 1.5rem;
+    }
+    .container1 header ul li a:hover
+    {
+        background: #f00;
+    }
+    .menuIcon
+    {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        display: initial;
+        z-index: 10000;
+        background: #fff url(image/menu.png);
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+    .menuIcon.active
+    {
+         background: #fff url(image/close.png);
+         background-size: 30px;
+         background-repeat: no-repeat;
+         background-position: center;
+         cursor: pointer;
+    }
+    .sci li a
+    {
+        width: 40px;
+        height: 40px;
+    }
+    .controls li 
+    {
+        width: 40px;
+        height: 40px;
+    }
+    .title-travel-1
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .title-travel-2 
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .email
+    {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 100px;
+    }
+    .email .email-img img
+    {
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+    .email .email-img
+    {
+        padding-top: 50px;
+    }
+    .email .email-title
+    {
+        text-align: center;
+        padding-top: 0;
+    }
+    .email .email-title .email-from
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .email .email-title .email-from .form-control
+    {
+        padding-bottom: 15px;
+    }
+    .blogger .blogger-text
+    {
+        text-align: center;
+    }
+    .post .post-card
+    {
+        text-align: center;
+    }
+    footer {
+        text-align: center;
+    }
+}
+.login
+{
+    position: fixed;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.login a
+{
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 20px;
+}
+.login a:hover {
+    background-color: #000;
+}
+.bxuser {
+    background: #bb0000;
+    color: white;
+}
+.bxcart {
+    background: #007bb5;
+    color: white;
+}

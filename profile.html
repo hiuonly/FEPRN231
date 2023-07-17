@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Online Shop</title>
+        <link rel="shortcut icon" href="images/logoShop.png" type="image/png" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" type="text/css"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/StyleCustomer.css">
+    </head>
+    <body>
+        <section class="py-5 my-5">
+            <div class="container">
+                <h2 class="mb-5"><a href="index.html"><i class="fa fa-thin fa-arrow-left"></i></a> Back to Home</h2>
+                <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+                    <div class="profile-tab-nav border-right">
+                        <div class="p-4">
+                            <div class="avatar-wrapper">
+                                <img class="profile-pic" src="image/admin123.jpg" />
+                            </div>
+                            <h4 class="text-center">WELCOME</h4>
+                        </div>
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                               aria-controls="account" aria-selected="true">
+                                <i class="fa fa-home text-center mr-1"></i>
+                                Account
+                            </a>
+                            <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                               aria-controls="security" aria-selected="false">
+                                <i class="fa fa-user text-center mr-1"></i>
+                                Setting Profile
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                            <h3 class="mb-4">Profile</h3>
+                            <div class="row" id="apiuser">
+                                
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                                <h3 class="mb-4">Profile Settings</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="avatar-wrapper">
+                                            <img class="profile-pic" src="image/170802C-650x650.jpg" />
+                                            <div class="upload-button">
+                                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                            </div>
+                                            <input name="img" id="img" class="file-upload" type="file" accept="image/*" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input id="firstname" type="text" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Last Name</label>
+                                            <input id="lastname" type="text" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input id="address" type="text" class="form-control" value="" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone number</label>
+                                            <input id="phone" type="number" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Passs</label>
+                                            <input id="pass" type="text" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary" id="UpdateUserButton">Update</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="js/profile.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                var readURL = function (input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('.profile-pic').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $(".file-upload").on('change', function () {
+                    readURL(this);
+                });
+
+                $(".upload-button").on('click', function () {
+                    $(".file-upload").click();
+                });
+            });
+        </script>
+        <script>
+            function validatePassword(password) {
+                var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                return passwordRegex.test(password);
+            }
+
+            var form = document.querySelector("form[action='ChangePass']");
+            var newPassInput = form.querySelector("input[name='newPass']");
+            var repassInput = form.querySelector("input[name='repass']");
+
+            form.addEventListener("submit", function (event) {
+                var newPass = newPassInput.value;
+                var repass = repassInput.value;
+
+                if (!validatePassword(newPass)) {
+                    event.preventDefault();
+                    var mess = "Mật khẩu phải chứa ít nhất một ký tự in hoa, một ký tự thường, một số và một ký tự đặc biệt và có độ dài ít nhất 8 ký tự.";
+                    repassInput.setCustomValidity(mess);
+                } else if (newPass !== repass) {
+                    event.preventDefault();
+                    var mess = "Mật khẩu xác nhận không khớp.";
+                    repassInput.setCustomValidity(mess);
+                } else {
+                    repassInput.setCustomValidity("");
+                }
+            });
+        </script>
+        <!--        send gmail-->
+        <<script src="js/main.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function () {
+                emailjs.init('ML1tdmFU_jkleBnBP');
+            })();
+        </script>
+    </body>
+
+</html>

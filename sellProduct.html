@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="image/logoshop.jpg" />
+
+    <!-- Import lib -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- End import lib -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sell.css">
+</head>
+
+<body class="overlay-scrollbar">
+    <!-- navbar -->
+    <div class="navbar">
+        <!-- nav left -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-bars" onclick="collapseSidebar()"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <img src="image/welcome.jpg" style="width: 60px; border-radius: 50%;" />
+            </li>
+        </ul>
+        <!-- end nav left -->
+        <!-- form -->
+        <form class="navbar-search">
+            <input type="text" name="Search" class="navbar-search-input" placeholder="What you looking for...">
+            <i class="fas fa-search"></i>
+        </form>
+        <ul class="navbar-nav nav-right">
+            <li class="nav-item mode">
+                <a class="nav-link" href="#" onclick="switchTheme()">
+                    <i class="fas fa-moon dark-icon"></i>
+                    <i class="fas fa-sun light-icon"></i>
+                </a>
+            </li>
+            <li class="nav-item avt-wrapper">
+                <div class="avt dropdown">
+                    <img src="image/chamsoc.png" alt="User image" class="dropdown-toggle" data-toggle="user-menu">
+                    <ul id="user-menu" class="dropdown-menu" style="width: 200px;">
+                        <li class="dropdown-menu-item">
+                            <a class="dropdown-menu-link">
+                                <div>
+                                    <img src="image/chamsoc.png" style="width: 40px; margin-top: 5px; margin-left: 10px;">
+                                </div>
+                                <span id="user-info">Profile Hello</span>
+                            </a>
+                        </li>
+                        <li class="dropdown-menu-item">
+                            <a id="login-link" href="#" class="dropdown-menu-link">
+                                <div>
+                                    <img src="image/c29.png" style="width: 40px; margin-top: 5px; margin-left: 10px;">
+                                </div>
+                                <span>Login</span>
+                            </a>
+                        </li>
+                        <li class="dropdown-menu-item">
+                            <a  href="#" class="dropdown-menu-link">
+                                <div>
+                                    <img src="image/c29.png" style="width: 40px; margin-top: 5px; margin-left: 10px;">
+                                </div>
+                                <span id="logout-link">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- end nav right -->
+    </div>
+    <!-- end navbar -->
+    <!-- sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a href="#" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="sellProduct.html" class="sidebar-nav-link">
+                    <div>
+                        <i class="fab fa-accusoft"></i>
+                    </div>
+                    <span>PRODUCT</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="addProduct.html" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <span>ADD PRODUCT</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="listUser.html" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-spinner"></i>
+                    </div>
+
+                    <span>MANAGER ADMIN</span>
+
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="bill.html" class="sidebar-nav-link">
+                    <div>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <span>BILL</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    <!-- main content -->
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-8 col-m-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            Table
+                        </h3>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <div class="card-content">
+                        <table id="apiTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div id="pagination"></div>
+                        <div id="pageInfo"></div>
+                        <div>
+                            <label for="pageSizeSelect">Items per page:</label>
+                            <select id="pageSizeSelect">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-categories">
+                <h1>PRODUCT CATEGORIES</h1>
+                <ul class="list-group" id="labrand">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end main content -->
+    <!-- import script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="./js/ProductAPI.js"></script>
+    <script src="js/logOut.js"></script>
+    <style>
+        #pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #pagination button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #pagination button.active {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #pagination button.disabled {
+            background-color: #ddd;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        #pageInfo {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #pageSizeSelect {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</body>
+
+</html>

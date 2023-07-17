@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--        <link rel="stylesheet" href="style.css">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/Giohang.css">
+    <link rel="stylesheet" href="css/product.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Giỏ Hàng</title>
+</head>
+
+<body>
+    <section>
+        <div class="bannerVideo" id="slideshow">
+            <img src="image/banner123.jpg" alt="">
+            <h2>SHOP ONLINE</h2>
+        </div>
+        <div class="container1">
+            <header class="navbar" id="navbar">
+                <a href="#" class="logo">SHOP ONLINE</a>
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="product.html">RPODUCT</a>
+                    </li>
+                    <li><a href="cart.html" class="active"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                </ul>
+                <span class="menuIcon" onclick="toggleMenu();"></span>
+            </header>
+        </div>
+    </section>
+    <div class="h1-g">
+    </div>
+    <div style="margin-top: -200px;">
+        <div style="margin-left: 120px;font-size: 20px;color: green;">
+            <span>GIỎ HÀNG</span>
+            <hr>
+        </div>
+        <div class="card-content" style="display: flex;  position: relative;">
+
+
+            <table class="table" style="width: 700px;margin-left: 120px;margin-bottom: 100px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Số Lượng</th>
+                        <th scope="col">name</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="myorder">
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="modal-delete" style="padding-top: 200px;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn xóa không?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" id="button-delete" data-dismiss="modal">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-all" style="padding-top: 200px;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa tất cả</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn xóa tất cả sản phẩm không?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="DeleteAll()">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modal fade" id="modal-delete" style="padding-top: 200px;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn xóa không?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" id="button-delete" data-dismiss="modal">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-all" style="padding-top: 200px;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa tất cả</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn xóa tất cả sản phẩm không?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="DeleteAll()">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer class=" text-lg-start bg-light text-muted">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 footer-text">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 footer-text-1">
+                <h1></h1>
+            </div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 footer-text-2">
+                <h3>Laptops or laptops are a compact personal computer that can be carried <span>People</span>. Machines
+                    <br>
+                    for each object have different uses.
+                </h3>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 footer-texts-1">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 footer-texts">
+                <h2>ABOUT THE LAPTOP</h2>
+                <p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do eiusmod mas.</p>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 footer-texts">
+                <h2>SUBSCRIBE TO VULADY_TECHNOLOGY</h2>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 footer-texts-2">
+                <h2>SHOP SYSTEM</h2>
+                <h5><i class="far fa-calendar-alt"></i> FPT SHOP ĐÀ NẴNG</h5>
+                <h5><i class="far fa-calendar-alt"></i> FPT SHOP HÀ NỘI</h5>
+                <h5><i class="far fa-calendar-alt"></i> FPT SHOP HỒ CHÍ MINH</h5>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 footer-texts">
+                <h2>INSTAGRAM FEED</h2>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-white" href="https://fptshop.com.vn/">FPTSHOP.COM</a>
+        </div>
+    </footer>
+    <div class="login">
+        <a href="profile.html" style="background-color: red;">
+            <i class='bx bx-user'></i>
+            <span id="user-info" style="display: none;">Tên người dùng</span>
+        </a>
+        <a id="login-link" class="nav-link" href="login.html" style="background: graytext">Login</a>
+        <a id="logout-link" class="nav-link" href="#" style="display: none; background-color: blue;">Logout</a>
+        <a href="myorder.html" class="bxcart">
+            <i class='bx bx-cart'></i>
+        </a>
+    </div>
+    <script src="js/logOut.js"></script>
+    <script src="./js/cartAPI.js"></script>
+</body>
+
+</html>
